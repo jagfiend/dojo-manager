@@ -5,21 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @mixin IdeHelperUser
+ */
 class User extends Authenticatable
 {
     use HasFactory;
 
-    protected array $fillable = [
+    protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    protected array $hidden = [
+    protected $hidden = [
         'password',
+        'remember_token',
     ];
 
-    protected array $casts = [
+    protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 }
