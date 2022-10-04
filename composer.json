@@ -35,15 +35,15 @@
     },
     "scripts": {
         "ecs:dry": [
-            "vendor/bin/ecs check"  
+            "vendor/bin/ecs check"
         ],
         "ecs:fix": [
-            "vendor/bin/ecs check --fix"  
+            "vendor/bin/ecs check --fix"
         ],
         "ide-helper": [
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta",
-            "@php artisan ide-helper:models --write-mixin"  
+            "@php artisan ide-helper:models -W"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
