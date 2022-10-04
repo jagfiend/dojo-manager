@@ -11,8 +11,6 @@ Other features such as managing details of junior members; parent registration a
 
 ### Local installation
 
-@TODO rework to use Docker
-
 To get a local copy of the project running:
 
 1. Install / open Docker Desktop.
