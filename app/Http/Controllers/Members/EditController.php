@@ -12,6 +12,6 @@ class EditController extends Controller
 {
     public function __invoke(): Response
     {
-        return Inertia::render('MembersCreate');
+        return Inertia::render('Members/Edit');
     }
 }

@@ -4,15 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class() extends Migration {
     public function up(): void
     {
         Schema::create('members', function (Blueprint $table): void {
             $table->id();
-            $table->unsignedTinyInteger('membership_type')->nullable();
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('address_1')->nullable();
@@ -32,10 +28,10 @@ return new class extends Migration
             $table->string('emergency_contact_email')->nullable();
             $table->unsignedTinyInteger('grade')->nullable();
             $table->date('last_grading_date')->nullable();
-            $table->unsignedTinyInteger('graded_by')->nullable();
+            $table->string('graded_by')->nullable();
             $table->date('next_grading_date')->nullable();
-            $table->boolean('is_instructor')->default(0);
-            $table->boolean('email_contact_consent')->default(0);
+            $table->boolean('is_instructor')->nullable()->default(0);
+            $table->boolean('email_contact_consent')->nullable()->default(0);
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/', fn (): RedirectResponse => to_route('dashboard'));
 
@@ -37,4 +37,3 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
         Route::delete('/{member}', MemberDeleteController::class)->name('members.delete');
     });
 });
-

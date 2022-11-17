@@ -23,7 +23,7 @@ class SuperUserSeeder extends Seeder
 
         User::create([
             'email' => config('super_user.email'),
-            'password' => Hash::make(config('super_user.password')),
+            'password' => Hash::make(strval(config('super_user.password'))),
         ]);
     }
 }

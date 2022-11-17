@@ -2,19 +2,21 @@ includes:
     - ./vendor/nunomaduro/larastan/extension.neon
 
 parameters:
-    
+
     level: 9
-    
+
     paths:
         - app
         - config
         - database
         - routes
-    
+
     excludePaths:
-        - tests
-        - vendor
         - _ide_helper.php
         - _ide_helper_models.php
         - .phpstorm.meta.php
+        - app/Http/Controllers/Auth
+        - app/Http/Requests/Auth
         - node_modules
+        - tests
+        - vendor
