@@ -4,13 +4,26 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Members;
 
+use App\Actions\UpdateMemberAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateMemberRequest;
+use App\Models\Member;
+use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 
 class UpdateController extends Controller
 {
-    public function __invoke(): RedirectResponse
+    public function __invoke(UpdateMemberRequest $request, Member $member, UpdateMemberAction $action): RedirectResponse
     {
-        return to_route(route('members.index'));
+        try {
+            $action->execute($member, $request->getData()); // @phpstan-ignore-line
+            session()->flash('success', 'Member updated');
+        } catch (Exception $e) {
+            Log::error($e); // @phpstan-ignore-line
+            session()->flash('warning', 'Something went wrong');
+        }
+
+        return to_route('members.index');
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\UpdateMemberAction;
+use App\Actions\StoreMemberAction;
 use App\Http\Requests\StoreMemberRequest;
 use Tests\TestCase;
 
@@ -18,7 +18,7 @@ class StoreMemberActionTest extends TestCase
             'last_name' => 'Le Minion',
         ]);
 
-        app(UpdateMemberAction::class)->execute($data->getData());
+        app(StoreMemberAction::class)->execute($data->getData());
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
@@ -55,7 +55,7 @@ class StoreMemberActionTest extends TestCase
             'email_contact_consent' => 1,
         ]);
 
-        app(UpdateMemberAction::class)->execute($data->getData());
+        app(StoreMemberAction::class)->execute($data->getData());
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
