@@ -8,7 +8,7 @@ use App\DTOs\MemberDto;
 use Illuminate\Foundation\Http\FormRequest;
 use Spatie\LaravelData\WithData;
 
-class StoreMemberRequest extends FormRequest
+class UpdateMemberRequest extends FormRequest
 {
     use WithData;
 

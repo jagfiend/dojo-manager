@@ -17,6 +17,5 @@ parameters:
         - .phpstorm.meta.php
         - app/Http/Controllers/Auth
         - app/Http/Requests/Auth
-        - node_modules
         - tests
         - vendor

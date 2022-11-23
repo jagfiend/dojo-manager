@@ -5,20 +5,23 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\UpdateMemberAction;
-use App\Http\Requests\StoreMemberRequest;
+use App\Http\Requests\UpdateMemberRequest;
+use App\Models\Member;
 use Tests\TestCase;
 
-class StoreMemberActionTest extends TestCase
+class UpdateMemberActionTest extends TestCase
 {
     /** @test */
     public function can_store_only_required_member_data(): void
     {
-        $data = new StoreMemberRequest([
+        $member = Member::factory()->create();
+
+        $data = new UpdateMemberRequest([
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
         ]);
 
-        app(UpdateMemberAction::class)->execute($data->getData());
+        app(UpdateMemberAction::class)->execute($member, $data->getData());
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
@@ -29,7 +32,9 @@ class StoreMemberActionTest extends TestCase
     /** @test */
     public function can_store_all_member_data(): void
     {
-        $data = new StoreMemberRequest([
+        $member = Member::factory()->create();
+
+        $data = new UpdateMemberRequest([
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
             'address_1' => 'Here',
@@ -55,7 +60,7 @@ class StoreMemberActionTest extends TestCase
             'email_contact_consent' => 1,
         ]);
 
-        app(UpdateMemberAction::class)->execute($data->getData());
+        app(UpdateMemberAction::class)->execute($member, $data->getData());
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',

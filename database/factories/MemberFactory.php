@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Member;
-use Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +17,8 @@ class MemberFactory extends Factory
     public function definition(): array
     {
         return [
-            // todo
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
         ];
     }
 }

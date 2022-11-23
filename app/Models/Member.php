@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @phpstan-ignore-next-line
+ * @mixin IdeHelperMember
+ */
 class Member extends Model
 {
+    use HasFactory;
+
     protected $casts = [
         'date_of_birth' => 'date',
         'insurance_date' => 'date',
