@@ -7,27 +7,27 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import {Head, useForm} from '@inertiajs/inertia-vue3';
 
 const form = useForm({
-    first_name: '',
-    last_name: '',
-    address_1: '',
-    address_2: '',
-    address_3: '',
-    city: '',
-    county: '',
-    postcode: '',
-    date_of_birth: '',
-    gender: '',
-    phone: '',
-    email: '',
-    insurance_date: '',
-    insurance_type: '',
-    emergency_contact_name: '',
-    emergency_contact_phone: '',
-    emergency_contact_email: '',
-    grade: '',
-    last_grading_date: '',
-    graded_by: '',
-    next_grading_date: '',
+    first_name: null,
+    last_name: null,
+    address_1: null,
+    address_2: null,
+    address_3: null,
+    city: null,
+    county: null,
+    postcode: null,
+    date_of_birth: null,
+    gender: null,
+    phone: null,
+    email: null,
+    insurance_date: null,
+    insurance_type: null,
+    emergency_contact_name: null,
+    emergency_contact_phone: null,
+    emergency_contact_email: null,
+    grade: null,
+    last_grading_date: null,
+    graded_by: null,
+    next_grading_date: null,
     is_instructor: 0,
     email_contact_consent: 0,
 });
@@ -54,15 +54,15 @@ const submit = () => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <form @submit="submit">
+                        <form @submit.prevent="submit">
                             <div class="pb-3">
                                 <InputLabel for="first_name" value="First Name *" />
-                                <TextInput id="first_name" type="text" class="mt-1 block w-full" v-model="form.first_name" required />
+                                <TextInput id="first_name" type="text" class="mt-1 block w-full" v-model="form.first_name" />
                                 <InputError class="mt-2" :message="form.errors.first_name" />
                             </div>
                             <div class="pb-3">
                                 <InputLabel for="last_name" value="Last Name *" />
-                                <TextInput id="last_name" type="text" class="mt-1 block w-full" v-model="form.last_name" required />
+                                <TextInput id="last_name" type="text" class="mt-1 block w-full" v-model="form.last_name" />
                                 <InputError class="mt-2" :message="form.errors.last_name" />
                             </div>
                             <div class="pb-3">

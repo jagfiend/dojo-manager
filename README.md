@@ -48,3 +48,12 @@ This project uses the Ide Helper package to assist with autocompletion and so on
 ### Testing
 
 To run PHPUnit tests, run ``sail artisan test``
+
+### TODO
+
+1. add flash msgs
+2. tidy up create form
+3. get all inputs working properly
+4. add index table (json resources?)
+5. add edit screen
+6. add delete btn
