@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Members;
 
+use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Member;
 use App\Models\User;
 use Tests\TestCase;
@@ -15,13 +16,13 @@ class UpdateControllerTest extends TestCase
     {
         $member = Member::factory()->create();
 
-        $data = [
+        $request = [
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
         ];
 
         $this
-            ->put(route('members.update', $member), $data)
+            ->put(route('members.update', $member), $request)
             ->assertRedirect(route('login'));
     }
 

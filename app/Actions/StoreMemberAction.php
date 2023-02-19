@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use App\DTOs\MemberDto;
+use App\DataTransferObjects\MemberData;
 use App\Models\Member;
 
 class StoreMemberAction
 {
-    public function execute(MemberDto $memberDto): bool
+    public function execute(MemberData $memberData): Member
     {
-        $member = Member::create($memberDto->toArray());
-
-        return $member instanceof Member;
+        return Member::create($memberData->toArray());
     }
 }

@@ -14,6 +14,7 @@ namespace App\Models{
 /**
  * App\Models\Member
  *
+ * @phpstan-ignore-next-line 
  * @property int $id
  * @property string $first_name
  * @property string $last_name
@@ -40,6 +41,7 @@ namespace App\Models{
  * @property bool|null $email_contact_consent
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\MemberFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Member newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Member newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Member query()
@@ -69,7 +71,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Member wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Member wherePostcode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Member whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 	class IdeHelperMember {}
 }
@@ -78,6 +79,7 @@ namespace App\Models{
 /**
  * App\Models\User
  *
+ * @phpstan-ignore-next-line 
  * @property int $id
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
@@ -98,7 +100,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 	class IdeHelperUser {}
 }

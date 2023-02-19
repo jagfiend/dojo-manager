@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', fn(): RedirectResponse => to_route('dashboard'));
+Route::get('/', fn (): RedirectResponse => to_route('dashboard'));
 
 Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\StoreMemberAction;
+use App\DataTransferObjects\MemberData;
 use App\Http\Requests\StoreMemberRequest;
 use Tests\TestCase;
 
@@ -13,12 +14,12 @@ class StoreMemberActionTest extends TestCase
     /** @test */
     public function can_store_only_required_member_data(): void
     {
-        $data = new StoreMemberRequest([
+        $request = new StoreMemberRequest([
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
         ]);
 
-        app(StoreMemberAction::class)->execute($data->getData());
+        app(StoreMemberAction::class)->execute(MemberData::fromRequest($request));
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
@@ -29,7 +30,7 @@ class StoreMemberActionTest extends TestCase
     /** @test */
     public function can_store_all_member_data(): void
     {
-        $data = new StoreMemberRequest([
+        $request = new StoreMemberRequest([
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
             'address_1' => 'Here',
@@ -51,11 +52,11 @@ class StoreMemberActionTest extends TestCase
             'last_grading_date' => '2019-01-31',
             'graded_by' => 'Mini Boss',
             'next_grading_date' => '2023-09-28',
-            'is_instructor' => 1,
-            'email_contact_consent' => 1,
+            'is_instructor' => true,
+            'email_contact_consent' => true,
         ]);
 
-        app(StoreMemberAction::class)->execute($data->getData());
+        app(StoreMemberAction::class)->execute(MemberData::fromRequest($request));
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
@@ -79,8 +80,8 @@ class StoreMemberActionTest extends TestCase
             'last_grading_date' => '2019-01-31',
             'graded_by' => 'Mini Boss',
             'next_grading_date' => '2023-09-28',
-            'is_instructor' => 1,
-            'email_contact_consent' => 1,
+            'is_instructor' => true,
+            'email_contact_consent' => true,
         ]);
     }
 }

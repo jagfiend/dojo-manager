@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use App\DTOs\MemberDto;
+use App\DataTransferObjects\MemberData;
 use App\Models\Member;
 
 class UpdateMemberAction
 {
-    public function execute(Member $member, MemberDto $memberDto): bool
+    public function execute(Member $member, MemberData $memberData): bool
     {
-        return $member->update($memberDto->toArray());
+        return $member->update($memberData->toArray());
     }
 }

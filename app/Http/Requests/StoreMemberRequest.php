@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\DTOs\MemberDto;
+use App\DataTransferObjects\MemberData;
 use Illuminate\Foundation\Http\FormRequest;
-use Spatie\LaravelData\WithData;
 
 class StoreMemberRequest extends FormRequest
 {
-    use WithData;
-
     /**
      * @return array<string, string[]>
      */
@@ -42,10 +39,5 @@ class StoreMemberRequest extends FormRequest
             'is_instructor' => ['nullable', 'int'],
             'email_contact_consent' => ['nullable', 'int'],
         ];
-    }
-
-    protected function dataClass(): string
-    {
-        return MemberDto::class;
     }
 }
