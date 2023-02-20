@@ -64,7 +64,7 @@ readonly class MemberData
             $request->input('email_contact_consent'),
         );
     }
-    
+
     public function toArray(): array
     {
         return (array)$this;

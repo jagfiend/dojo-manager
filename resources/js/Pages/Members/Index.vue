@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head } from '@inertiajs/vue3';
+import NavLink from "@/Components/NavLink.vue";
 </script>
 
 <template>
@@ -8,16 +9,16 @@ import { Head } from '@inertiajs/inertia-vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-white leading-tight">
                 Members
             </h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <a :href="route('members.create')">Add new member</a>
+                <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 border-b">
+                        <NavLink :href="route('members.create')">Add new member</NavLink>
                     </div>
                 </div>
             </div>

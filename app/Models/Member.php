@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @phpstan-ignore-next-line 
+ * @phpstan-ignore-next-line
  * @mixin IdeHelperMember
  */
 class Member extends Model

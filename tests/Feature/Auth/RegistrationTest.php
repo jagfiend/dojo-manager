@@ -6,9 +6,6 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-/**
- * @group Auth
- */
 class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
