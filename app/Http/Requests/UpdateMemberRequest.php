@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\DataTransferObjects\MemberData;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMemberRequest extends FormRequest
+final class UpdateMemberRequest extends FormRequest
 {
     /**
      * @return array<string, string[]>

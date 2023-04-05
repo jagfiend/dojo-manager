@@ -13,7 +13,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 
-class UpdateController extends Controller
+final class UpdateController extends Controller
 {
     public function __invoke(UpdateMemberRequest $request, Member $member, UpdateMemberAction $action): RedirectResponse
     {

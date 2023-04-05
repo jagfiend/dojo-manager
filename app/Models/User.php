@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
  * @phpstan-ignore-next-line
  * @mixin IdeHelperUser
  */
-class User extends Authenticatable
+final class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;

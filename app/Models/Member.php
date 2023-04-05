@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @phpstan-ignore-next-line
  * @mixin IdeHelperMember
  */
-class Member extends Model
+final class Member extends Model
 {
     use HasFactory;
 

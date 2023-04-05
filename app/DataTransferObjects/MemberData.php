@@ -7,7 +7,7 @@ namespace App\DataTransferObjects;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 
-readonly class MemberData
+final readonly class MemberData
 {
     public function __construct(
         public string $first_name,

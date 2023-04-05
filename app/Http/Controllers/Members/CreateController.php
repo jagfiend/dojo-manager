@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class CreateController extends Controller
+final class CreateController extends Controller
 {
     public function __invoke(): Response
     {

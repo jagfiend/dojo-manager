@@ -2,12 +2,8 @@
 
 ### Overview
 
-This project is a dojo management application for club owner's to:
-
-- manage adult members details, keep insurance up to date, track gradings so on
-- manage dojo events with the ability to invite members and external guests to events
-
-Other features such as managing details of junior members; parent registration and external guest registration will be added over time.
+This is sketch of a dojo manager application, mostly to consolidate my recent learning around using
+Larastan, ECS, TDD and single action controllers.
 
 ### Local installation
 
@@ -50,6 +46,12 @@ This project uses the Ide Helper package to assist with autocompletion and so on
 To run PHPUnit tests, run ``sail artisan test``
 
 ### TODO
+
+ECS
+
+1. add stricter rule set
+
+MEMBERSHIP CRUD
 
 1. add flash msgs
 2. tidy up create form

@@ -7,7 +7,7 @@ namespace App\Actions;
 use App\DataTransferObjects\MemberData;
 use App\Models\Member;
 
-class UpdateMemberAction
+final class UpdateMemberAction
 {
     public function execute(Member $member, MemberData $memberData): void
     {

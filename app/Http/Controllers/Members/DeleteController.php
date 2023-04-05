@@ -10,7 +10,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Log;
 
-class DeleteController extends Controller
+final class DeleteController extends Controller
 {
     public function __invoke(Member $member): RedirectResponse
     {

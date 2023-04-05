@@ -12,7 +12,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 
-class StoreController extends Controller
+final class StoreController extends Controller
 {
     public function __invoke(StoreMemberRequest $request, StoreMemberAction $action): RedirectResponse
     {
