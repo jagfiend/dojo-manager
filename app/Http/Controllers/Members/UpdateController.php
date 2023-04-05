@@ -21,7 +21,7 @@ class UpdateController extends Controller
             $action->execute($member, MemberData::fromRequest($request));
             session()->flash('success', 'Member updated');
         } catch (Exception $e) {
-            Log::error($e); // @phpstan-ignore-line
+            Log::error('Member Update Controller: ' . $e->getMessage());
             session()->flash('warning', 'Something went wrong');
         }
 

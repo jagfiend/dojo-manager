@@ -39,32 +39,35 @@ readonly class MemberData
     public static function fromRequest(StoreMemberRequest|UpdateMemberRequest $request): self
     {
         return new self(
-            $request->input('first_name'),
-            $request->input('last_name'),
-            $request->input('address_1'),
-            $request->input('address_2'),
-            $request->input('address_3'),
-            $request->input('city'),
-            $request->input('county'),
-            $request->input('postcode'),
-            $request->input('date_of_birth'),
-            $request->input('gender'),
-            $request->input('phone'),
-            $request->input('email'),
-            $request->input('insurance_date'),
-            $request->input('insurance_type'),
-            $request->input('emergency_contact_name'),
-            $request->input('emergency_contact_phone'),
-            $request->input('emergency_contact_email'),
-            $request->input('grade'),
-            $request->input('last_grading_date'),
-            $request->input('graded_by'),
-            $request->input('next_grading_date'),
-            $request->input('is_instructor'),
-            $request->input('email_contact_consent'),
+            $request->string('first_name')->toString(),
+            $request->string('last_name')->toString(),
+            $request->input('address_1') ? $request->string('address_1')->toString() : null,
+            $request->input('address_2') ? $request->string('address_2')->toString() : null,
+            $request->input('address_3') ? $request->string('address_3')->toString() : null,
+            $request->input('city') ? $request->string('city')->toString() : null,
+            $request->input('county') ? $request->string('county')->toString() : null,
+            $request->input('postcode') ? $request->string('postcode')->toString() : null,
+            $request->input('date_of_birth') ? $request->string('date_of_birth')->toString() : null,
+            $request->input('gender') ? $request->string('gender')->toString() : null,
+            $request->input('phone') ? $request->string('phone')->toString() : null,
+            $request->input('email') ? $request->string('email')->toString() : null,
+            $request->input('insurance_date') ? $request->string('insurance_date')->toString() : null,
+            $request->input('insurance_type') ? $request->integer('insurance_type') : null,
+            $request->input('emergency_contact_name') ? $request->string('emergency_contact_name')->toString() : null,
+            $request->input('emergency_contact_phone') ? $request->string('emergency_contact_phone')->toString() : null,
+            $request->input('emergency_contact_email') ? $request->string('emergency_contact_email')->toString() : null,
+            $request->input('grade') ? $request->integer('grade') : null,
+            $request->input('last_grading_date') ? $request->string('last_grading_date')->toString() : null,
+            $request->input('graded_by') ? $request->string('graded_by')->toString() : null,
+            $request->input('next_grading_date') ? $request->string('next_grading_date')->toString() : null,
+            $request->input('is_instructor') ? $request->boolean('is_instructor') : null,
+            $request->input('email_contact_consent') ? $request->boolean('email_contact_consent') : null,
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return (array)$this;

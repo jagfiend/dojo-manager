@@ -20,7 +20,7 @@ class StoreController extends Controller
             $action->execute(MemberData::fromRequest($request));
             session()->flash('success', 'Member record stored');
         } catch (Exception $e) {
-            Log::error($e); // @phpstan-ignore-line
+            Log::error('Member Store Controller: ' . $e->getMessage());
             session()->flash('warning', 'Something went wrong');
         }
 

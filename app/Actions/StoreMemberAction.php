@@ -9,8 +9,8 @@ use App\Models\Member;
 
 class StoreMemberAction
 {
-    public function execute(MemberData $memberData): Member
+    public function execute(MemberData $memberData): void
     {
-        return Member::create($memberData->toArray());
+        Member::query()->create($memberData->toArray());
     }
 }

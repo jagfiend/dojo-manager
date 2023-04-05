@@ -18,7 +18,7 @@ class DeleteController extends Controller
             $member->delete();
             session()->flash('success', 'Member deleted');
         } catch (Exception $e) {
-            Log::error($e); // @phpstan-ignore-line
+            Log::error('Member Delete Controller: ' . $e->getMessage());
             session()->flash('warning', 'Something went wrong');
         }
 

@@ -9,8 +9,8 @@ use App\Models\Member;
 
 class UpdateMemberAction
 {
-    public function execute(Member $member, MemberData $memberData): bool
+    public function execute(Member $member, MemberData $memberData): void
     {
-        return $member->update($memberData->toArray());
+        $member->update($memberData->toArray());
     }
 }
