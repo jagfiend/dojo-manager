@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * @phpstan-ignore-next-line
  * @mixin IdeHelperUser
  */
 final class User extends Authenticatable
