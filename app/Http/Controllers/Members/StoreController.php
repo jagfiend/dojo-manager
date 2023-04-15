@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Members;
 
 use App\Actions\StoreMemberAction;
-use App\DataTransferObjects\MemberData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMemberRequest;
 use Exception;
@@ -17,7 +16,7 @@ final class StoreController extends Controller
     public function __invoke(StoreMemberRequest $request, StoreMemberAction $action): RedirectResponse
     {
         try {
-            $action->execute(new MemberData(...$request->validated()));
+            $action->execute((array)$request->validated());
             session()->flash('success', 'Member record stored');
         } catch (Exception $e) {
             Log::error('Member Store Controller: ' . $e->getMessage());

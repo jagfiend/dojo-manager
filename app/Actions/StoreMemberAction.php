@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use App\DataTransferObjects\MemberData;
 use App\Models\Member;
 
 final class StoreMemberAction
 {
-    public function execute(MemberData $memberData): void
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function execute(array $data): void
     {
-        Member::query()->create($memberData->toArray());
+        Member::query()->create($data);
     }
 }

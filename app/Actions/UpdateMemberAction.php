@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use App\DataTransferObjects\MemberData;
 use App\Models\Member;
 
 final class UpdateMemberAction
 {
-    public function execute(Member $member, MemberData $memberData): void
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function execute(Member $member, array $data): void
     {
-        $member->update($memberData->toArray());
+        $member->update($data);
     }
 }

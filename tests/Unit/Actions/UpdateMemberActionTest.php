@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\UpdateMemberAction;
-use App\DataTransferObjects\MemberData;
 use App\Models\Member;
 use Tests\TestCase;
 
@@ -16,12 +15,10 @@ class UpdateMemberActionTest extends TestCase
     {
         $member = Member::factory()->create();
 
-        $data =[
+        app(UpdateMemberAction::class)->execute($member, [
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
-        ];
-
-        app(UpdateMemberAction::class)->execute($member, new MemberData(...$data));
+        ]);
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
@@ -60,7 +57,7 @@ class UpdateMemberActionTest extends TestCase
             'email_contact_consent' => true,
         ];
 
-        app(UpdateMemberAction::class)->execute($member, new MemberData(...$data));
+        app(UpdateMemberAction::class)->execute($member, $data);
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',

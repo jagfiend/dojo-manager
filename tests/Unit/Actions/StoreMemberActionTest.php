@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\StoreMemberAction;
-use App\DataTransferObjects\MemberData;
 use Tests\TestCase;
 
 class StoreMemberActionTest extends TestCase
@@ -18,7 +17,7 @@ class StoreMemberActionTest extends TestCase
             'last_name' => 'Le Minion',
         ];
 
-        app(StoreMemberAction::class)->execute(new MemberData(...$data));
+        app(StoreMemberAction::class)->execute($data);
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
@@ -55,7 +54,7 @@ class StoreMemberActionTest extends TestCase
             'email_contact_consent' => true,
         ];
 
-        app(StoreMemberAction::class)->execute(new MemberData(...$data));
+        app(StoreMemberAction::class)->execute($data);
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
