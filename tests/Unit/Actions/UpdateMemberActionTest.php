@@ -6,23 +6,22 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\UpdateMemberAction;
 use App\DataTransferObjects\MemberData;
-use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Member;
 use Tests\TestCase;
 
 class UpdateMemberActionTest extends TestCase
 {
     /** @test */
-    public function can_store_only_required_member_data(): void
+    public function can_update_only_required_member_data(): void
     {
         $member = Member::factory()->create();
 
-        $request = new UpdateMemberRequest([
+        $data =[
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
-        ]);
+        ];
 
-        app(UpdateMemberAction::class)->execute($member, MemberData::fromRequest($request));
+        app(UpdateMemberAction::class)->execute($member, new MemberData(...$data));
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
@@ -31,11 +30,11 @@ class UpdateMemberActionTest extends TestCase
     }
 
     /** @test */
-    public function can_store_all_member_data(): void
+    public function can_update_all_member_data(): void
     {
         $member = Member::factory()->create();
 
-        $request = new UpdateMemberRequest([
+        $data = [
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
             'address_1' => 'Here',
@@ -59,9 +58,9 @@ class UpdateMemberActionTest extends TestCase
             'next_grading_date' => '2023-09-28',
             'is_instructor' => true,
             'email_contact_consent' => true,
-        ]);
+        ];
 
-        app(UpdateMemberAction::class)->execute($member, MemberData::fromRequest($request));
+        app(UpdateMemberAction::class)->execute($member, new MemberData(...$data));
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',

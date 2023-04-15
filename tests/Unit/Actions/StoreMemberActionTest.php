@@ -6,7 +6,6 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\StoreMemberAction;
 use App\DataTransferObjects\MemberData;
-use App\Http\Requests\StoreMemberRequest;
 use Tests\TestCase;
 
 class StoreMemberActionTest extends TestCase
@@ -14,12 +13,12 @@ class StoreMemberActionTest extends TestCase
     /** @test */
     public function can_store_only_required_member_data(): void
     {
-        $request = new StoreMemberRequest([
+        $data = [
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
-        ]);
+        ];
 
-        app(StoreMemberAction::class)->execute(MemberData::fromRequest($request));
+        app(StoreMemberAction::class)->execute(new MemberData(...$data));
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',
@@ -30,7 +29,7 @@ class StoreMemberActionTest extends TestCase
     /** @test */
     public function can_store_all_member_data(): void
     {
-        $request = new StoreMemberRequest([
+        $data = [
             'first_name' => 'Kevin',
             'last_name' => 'Le Minion',
             'address_1' => 'Here',
@@ -54,9 +53,9 @@ class StoreMemberActionTest extends TestCase
             'next_grading_date' => '2023-09-28',
             'is_instructor' => true,
             'email_contact_consent' => true,
-        ]);
+        ];
 
-        app(StoreMemberAction::class)->execute(MemberData::fromRequest($request));
+        app(StoreMemberAction::class)->execute(new MemberData(...$data));
 
         $this->assertDatabaseHas('members', [
             'first_name' => 'Kevin',

@@ -17,7 +17,7 @@ final class StoreController extends Controller
     public function __invoke(StoreMemberRequest $request, StoreMemberAction $action): RedirectResponse
     {
         try {
-            $action->execute(MemberData::fromRequest($request));
+            $action->execute(new MemberData(...$request->validated()));
             session()->flash('success', 'Member record stored');
         } catch (Exception $e) {
             Log::error('Member Store Controller: ' . $e->getMessage());

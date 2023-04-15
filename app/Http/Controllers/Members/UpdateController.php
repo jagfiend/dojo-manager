@@ -18,7 +18,7 @@ final class UpdateController extends Controller
     public function __invoke(UpdateMemberRequest $request, Member $member, UpdateMemberAction $action): RedirectResponse
     {
         try {
-            $action->execute($member, MemberData::fromRequest($request));
+            $action->execute($member, new MemberData(...$request->validated()));
             session()->flash('success', 'Member updated');
         } catch (Exception $e) {
             Log::error('Member Update Controller: ' . $e->getMessage());
