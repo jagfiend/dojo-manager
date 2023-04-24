@@ -14,6 +14,11 @@ parameters:
         - _ide_helper_models.php
 
     excludePaths:
+        - app/Http/Controllers/Auth/*
+        - app/Http/Controllers/ProfileController.php
+        - app/Http/Requests/Auth/*
+        - app/Http/Requests/ProfileUpdateRequest.php
+        - app/Providers/AppServiceProvider.php
         - _ide_helper.php
         - .phpstorm.meta.php
         - tests

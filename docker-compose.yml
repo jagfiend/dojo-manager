@@ -1,52 +1,57 @@
-# For more information: https://laravel.com/docs/sail
-version: '3'
 services:
-    laravel.test:
-        build:
-            context: ./vendor/laravel/sail/runtimes/8.2
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-8.2/app
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        ports:
-            - '${APP_PORT:-80}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-        volumes:
-            - '.:/var/www/html'
-        networks:
-            - sail
-        depends_on:
-            - mariadb
-    mariadb:
-        image: 'mariadb:10'
-        ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
-        environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: "%"
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-        volumes:
-            - 'sail-mariadb:/var/lib/mysql'
-            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
-        networks:
-            - sail
-        healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
-            retries: 3
-            timeout: 5s
+  nginx:
+    container_name: dojo-manager-nginx
+    image: dojo-manager/nginx
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - php
+    volumes:
+      - ./:/var/www/vhost/:cached
+      - ./docker/nginx/certs:/etc/nginx/ssl
+      - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    working_dir: /var/www/vhost/
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - dojo-manager-network
+
+  php:
+    container_name: dojo-manager-php
+    image: dojo-manager/php
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    environment:
+      PHP_MEMORY_LIMIT: '128M'
+      COMPOSER_MEMORY_LIMIT: '-1'
+    volumes:
+      - ./:/var/www/vhost/:cached
+    working_dir: /var/www/vhost/
+    ports:
+      - '9000:9000'
+    networks:
+      - dojo-manager-network
+
+  mysql:
+    container_name: dojo-manager-sql
+    image: mysql/mysql-server:latest
+    platform: linux/x86_64
+    volumes:
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'dojo_manager'
+      MYSQL_USER: 'dojo_manager'
+      MYSQL_PASSWORD: 'dojo_manager_local'
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - '3307:3306'
+    networks:
+      - dojo-manager-network
+
 networks:
-    sail:
-        driver: bridge
-volumes:
-    sail-mariadb:
-        driver: local
+  dojo-manager-network:
+    driver: bridge
