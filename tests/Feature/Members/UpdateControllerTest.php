@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Members;
 
-use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Member;
 use App\Models\User;
 use Tests\TestCase;

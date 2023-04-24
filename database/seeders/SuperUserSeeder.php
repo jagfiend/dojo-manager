@@ -9,7 +9,7 @@ use Hash;
 use Illuminate\Database\Seeder;
 use RuntimeException;
 
-class SuperUserSeeder extends Seeder
+final class SuperUserSeeder extends Seeder
 {
     public function run(): void
     {

@@ -16,7 +16,5 @@ parameters:
     excludePaths:
         - _ide_helper.php
         - .phpstorm.meta.php
-        - app/Http/Controllers/Auth
-        - app/Http/Requests/Auth
         - tests
         - vendor

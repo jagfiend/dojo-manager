@@ -9,8 +9,6 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
     public function register()
     {
@@ -19,12 +17,12 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot()
     {
-        // Recommended settings from https://planetscale.com/blog/laravels-safety-mechanisms
+        /**
+         * @see https://planetscale.com/blog/laravels-safety-mechanisms Recommended settings
+         */
         Model::unguard();
         Model::preventAccessingMissingAttributes();
         Model::preventLazyLoading(!$this->app->isProduction());
