@@ -17,7 +17,7 @@ To get a local copy of the project running (steps use Oh-my-zsh Docker aliasing)
 6. Run ``dcupd --build`` to build the Docker containers and run them. 
 7. Run ``dce php composer install`` to install PHP packages. 
 8. Run ``dce php php artisan key:generate --ansi`` to generate an application key. 
-9. Run ``dce php php artisan migrate:fresh --seed`` to populate your local DB. 
+9. Run ``dce php php artisan migrate:fresh --seed`` to populate your local DB.
 
 The application should now be running at https://dojo-manager.local.
 
