@@ -6,8 +6,19 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterCastSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff;
-use PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\ControlSignatureSniff;
 use PHP_CodeSniffer\Standards\PSR12\Sniffs\ControlStructures\BooleanOperatorPlacementSniff;
+use PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\ControlSignatureSniff;
+use SlevomatCodingStandard\Sniffs\Arrays\TrailingArrayCommaSniff;
+use SlevomatCodingStandard\Sniffs\Classes\ClassConstantVisibilitySniff;
+use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
+use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
+use SlevomatCodingStandard\Sniffs\ControlStructures\EarlyExitSniff;
+use SlevomatCodingStandard\Sniffs\ControlStructures\NewWithParenthesesSniff;
+use SlevomatCodingStandard\Sniffs\ControlStructures\RequireNullCoalesceOperatorSniff;
+use SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff;
+use SlevomatCodingStandard\Sniffs\Functions\UnusedInheritedVariablePassedToClosureSniff;
+use SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff;
+use SlevomatCodingStandard\Sniffs\Functions\UselessParameterDefaultValueSniff;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
@@ -28,7 +39,18 @@ return static function (ECSConfig $ecsConfig): void
     ]);
 
     $ecsConfig->rules([
-        CamelCapsFunctionNameSniff::class, // methodsNamedLikeThis()
+        CamelCapsFunctionNameSniff::class, // functionsNamedLikeThis()
+        ClassConstantVisibilitySniff::class, // must be fixed manually
+        DeadCatchSniff::class,
+        EarlyExitSniff::class,
+        EmptyCommentSniff::class,
+        NewWithParenthesesSniff::class,
+        RequireNullCoalesceOperatorSniff::class,
+        TrailingArrayCommaSniff::class,
+        UnusedInheritedVariablePassedToClosureSniff::class,
+        UnusedParameterSniff::class,
+        UselessFunctionDocCommentSniff::class,
+        UselessParameterDefaultValueSniff::class,
     ]);
 
     $ecsConfig->rulesWithConfiguration([
@@ -59,5 +81,10 @@ return static function (ECSConfig $ecsConfig): void
         CamelCapsFunctionNameSniff::class => [
             '/tests/*' // test_methods_named_like_this()
         ],
+        UnusedParameterSniff::class => [
+            'app/Console/Kernel.php',
+            'app/Exceptions/Handler.php',
+            'database/factories/*' // ignore unused $attributes param
+        ]
     ]);
 };
