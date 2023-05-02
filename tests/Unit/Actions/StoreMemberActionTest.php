@@ -9,7 +9,9 @@ use Tests\TestCase;
 
 class StoreMemberActionTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function can_store_only_required_member_data(): void
     {
         $data = [
@@ -25,7 +27,9 @@ class StoreMemberActionTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function can_store_all_member_data(): void
     {
         $data = [

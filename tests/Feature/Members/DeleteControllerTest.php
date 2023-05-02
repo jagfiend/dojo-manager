@@ -10,7 +10,9 @@ use Tests\TestCase;
 
 class DeleteControllerTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function guest_cannot_delete_member(): void
     {
         $member = Member::factory()->create();
@@ -20,7 +22,9 @@ class DeleteControllerTest extends TestCase
             ->assertRedirect(route('login'));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function authenticated_can_delete_member(): void
     {
         $user = User::factory()->create();

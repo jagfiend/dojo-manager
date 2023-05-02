@@ -10,7 +10,9 @@ use Tests\TestCase;
 
 class UpdateMemberActionTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function can_update_only_required_member_data(): void
     {
         $member = Member::factory()->create();
@@ -26,7 +28,9 @@ class UpdateMemberActionTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function can_update_all_member_data(): void
     {
         $member = Member::factory()->create();

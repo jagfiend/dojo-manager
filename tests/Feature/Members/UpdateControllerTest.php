@@ -10,7 +10,9 @@ use Tests\TestCase;
 
 class UpdateControllerTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function guest_cannot_update_member(): void
     {
         $member = Member::factory()->create();
@@ -25,7 +27,9 @@ class UpdateControllerTest extends TestCase
             ->assertRedirect(route('login'));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function authenticated_can_update_member(): void
     {
         $user = User::factory()->create();

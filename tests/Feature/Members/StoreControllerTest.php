@@ -9,7 +9,9 @@ use Tests\TestCase;
 
 class StoreControllerTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function guest_cannot_store_member(): void
     {
         $data = [
@@ -22,7 +24,9 @@ class StoreControllerTest extends TestCase
             ->assertRedirect(route('login'));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function authenticated_can_store_member(): void
     {
         $user = User::factory()->create();
